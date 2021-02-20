@@ -1,0 +1,2 @@
+# memorizewords
+Memorize new words
