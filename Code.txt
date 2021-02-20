@@ -1,0 +1,53 @@
+Option Compare Database
+
+Private Sub Exit_Click()
+kaldigimyeraltformu![kaldigimyer] = [CurrentRecord]
+DoCmd.Quit
+End Sub
+
+Private Sub Form_Open(Cancel As Integer)
+DoCmd.GoToRecord acDataForm, "kelime", acGoTo, [kaldigimyeraltformu].Form![kaldigimyer]
+Me!Exit.SetFocus
+End Sub
+
+Private Sub Komut15_Click()
+DoCmd.OpenForm ("sozluk")
+End Sub
+
+Option Compare Database
+
+Private Sub Form_Open(Cancel As Integer)
+DoCmd.GoToRecord acDataForm, "kart", acGoTo, [kaldigimyeraltformu].Form![kaldigimyer]
+Me.Exit.SetFocus
+End Sub
+
+Private Sub Exit_Click()
+kaldigimyeraltformu![kaldigimyer] = [CurrentRecord]
+DoCmd.GoToRecord acDataForm, "kelime", acGoTo, [kaldigimyeraltformu].Form![kaldigimyer]
+DoCmd.Close
+Forms!kelime!Exit.SetFocus
+End Sub
+
+Private Sub Komut31_Click()
+Dim Shex As Object
+   Set Shex = CreateObject("Shell.Application")
+   tgtfile = "https://google.com/images/search?text=" & Me!kelime
+   Shex.Open (tgtfile)
+End Sub
+
+Private Sub Komut58_Click()
+kelime.Visible = True
+End Sub
+
+Option Compare Database
+
+Private Sub Form_Open(Cancel As Integer)
+myweb.Object.Silent = True
+myweb.Visible = True
+myweb.Navigate URL:="https://en.pons.com/translate/german-english/" & Forms!kart.kelime.Value
+myweb2.Navigate URL:="https://de.pons.com/%C3%BCbersetzung/deutsch-t%C3%BCrkisch/" & Forms!kart.kelime.Value
+End Sub
+
+Private Sub Komut4_Click()
+DoCmd.Close
+End Sub
